@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Mission Smile 😁</title>
+<style>
+body {
+     background: linear-gradient(to right, #ffe0ec, #fff5e6);
+    font-family: 'Segoe UI', sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+.container{
+   position: relative;
+   width : 90%;
+   max-width:600px;
+   text-align: center;
+background: rgba(255, 255, 255, 0.5);
+padding: 30px;
+border-radius: 20px;
+backdrop-filter: blur(10px);
+box-shadow: 0 8px 25px rgba(255, 77, 109, 0.3);
+}
+h1 {
+    color: #ff4d6d;
+    font-size: 32px;
+}
+
+p {
+    font-size: 20px;
+    color: #444;
+}
+
+button {
+    margin: 15px;
+    padding: 14px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: #ff8fab;
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ff4d6d;
+    transform: scale(1.1);
+}
+
+#msg {
+    margin-top: 30px;
+    font-size: 22px;
+    color: #333;
+}
+</style>
+</head>
+<body>
+<div id="hearts"></div>
+<audio id ="bgMusic" loop>
+   <source
+src="C:/Users/Kush/OneDrive/Desktop/mission_smile/music.mp3.mp3" type="audio/mpeg">
+</audio>
+<div class="container">
+<h1>⚠️Warning: Answer Honestly😏</h1>
+<p>Are you smiling right now?</p>
+<p>(Think carefully..I'm watching👀)</p>
+<button onclick="showMessage()">Yess 😎</button>
+<button id="noBtn" onmouseover="moveButton()" onclick="moveButton()" ontouchstart="moveButton()">No 😐</button>
+<p id="msg" style="display:none;"></p>
+<button id="secretBtn" style="display:none;"onclick="finalMessage()">One More thing..😙</button>
+<script>
+function moveButton() {
+    let btn = document.getElementById("noBtn");
+    let container = document.querySelector(".container");
+
+    let rect = container.getBoundingClientRect();
+
+    let x = Math.random() * (rect.width - btn.offsetWidth);
+    let y = Math.random() * (rect.height - btn.offsetHeight);
+
+    btn.style.position = "absolute"; 
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+}
+
+function showMessage() {
+let music = 
+document.getElementById("bgMusic");
+music.currentTime = 0;
+document.body.addEventListener("click", () => {
+    music.play();
+}, { once: true });
+let text = "Caught you😝 You just smiled didn't you? Relax...happens when you see something nice😁😎";
+    let i = 0;
+    let speed = 50;
+
+    document.getElementById("msg").style.display = "block";
+    document.getElementById("secretBtn").style.display = "inline-block";
+    document.getElementById("msg").innerHTML = "";
+
+    function typeWriter() {
+        if (i < text.length) {
+            document.getElementById("msg").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        }
+    }
+
+    typeWriter();
+}
+function finalMessage() {
+   document.getElementById("msg").innerHTML = 
+         "You smile kinda cute btw😚<br><br>Don't argue..I've proof😜";
+}
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.innerHTML = "💖";
+    heart.style.position = "fixed";
+    heart.style.pointerEvents = "none";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = "0px";
+    heart.style.fontSize = "20px";
+
+    document.body.appendChild(heart);
+    let pos = 0;
+    
+    let fall = setInterval(() => {
+    pos += 2; // speed of falling
+    heart.style.top = pos + "px";
+
+    if (pos > window.innerHeight) { clearInterval(fall);
+        heart.remove();
+}
+    }, 50);
+}, 1000);
+</script>
+<p style="margin-top:50px; font-size:14px; color:gray; text-align:center;">
+    Made by someone who knows how to make you smile 😌
+</p>
+</div>
+</body>
+</html>
